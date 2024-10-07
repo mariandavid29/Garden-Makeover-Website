@@ -1,0 +1,137 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+publish_mode: editorial_workflow
+
+media_folder: "src/media" # Media files will be stored in the repo under static/images/uploads
+public_folder: "/media" # The src attribute for uploaded media will begin with /images/uploads
+
+collections:
+  - label: "Website pages"
+    name: "websitePages"
+    files:
+      - name: "mainPage" # Used in routes, e.g., /admin/collections/blog
+        label: "Main Page" # Used in the UI
+        file: "src/CMS/mainPage.json"
+        fields:
+          - label: "Reason to choose McDermott(Why us)"
+            name: "reason"
+            widget: "object"
+            fields:
+              - { label: "Reason Title", name: "reasonTitle", widget: "string" }
+              - { label: "Reason Text", name: "reasonText", widget: "text" }
+          - label: "The Story of McDermott(Our story)"
+            name: "story"
+            widget: "object"
+            fields:
+              - { label: "Story Title", name: "storyTitle", widget: "string" }
+              - { label: "Story Text", name: "storyText", widget: "text" }
+
+      - name: "softscapingPage" # Used in routes, e.g., /admin/collections/blog
+        label: "Softscaping Page" # Used in the UI
+        file: "src/CMS/softscapingPage.json"
+        media_folder: "{{media_folder}}/soft" # Media files will be stored in the repo under static/images/uploads
+        public_folder: "{{public_folder}}/soft" # The src attribute for uploaded media will begin with /images/uploads
+        fields:
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Services Title", name: "servicesTitle", widget: "string" }
+          - label: "Softscaping Services"
+            name: "softScapingServices"
+            widget: "list"
+            fields:
+              - { label: "Service Icon", name: "serviceIcon", widget: "image" }
+              - { label: "Service Name", name: "serviceName", widget: "string" }
+              - {
+                  label: "Service Description",
+                  name: "serviceDescription",
+                  widget: "text",
+                }
+
+      - name: "hardcapingPage" # Used in routes, e.g., /admin/collections/blog
+        label: "Hardscaping Page" # Used in the UI
+        file: "src/CMS/hardscapingPage.json"
+        media_folder: "{{media_folder}}/hard" # Media files will be stored in the repo under static/images/uploads
+        public_folder: "{{public_folder}}/hard" # The src attribute for uploaded media will begin with /images/uploads
+        fields:
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Services Title", name: "servicesTitle", widget: "string" }
+          - label: "Hardscaping Services"
+            name: "hardScapingServices"
+            widget: "list"
+            fields:
+              - { label: "Service Icon", name: "serviceIcon", widget: "image" }
+              - { label: "Service Name", name: "serviceName", widget: "string" }
+              - {
+                  label: "Service Description",
+                  name: "serviceDescription",
+                  widget: "text",
+                }
+
+      - name: "maintenance" # Used in routes, e.g., /admin/collections/blog
+        label: "Maintenance Page" # Used in the UI
+        file: "src/CMS/maintenance.json"
+        media_folder: "{{media_folder}}/maintenance" # Media files will be stored in the repo under static/images/uploads
+        public_folder: "{{public_folder}}/maintenance" # The src attribute for uploaded media will begin with /images/uploads
+        fields:
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Services Title", name: "servicesTitle", widget: "string" }
+          - label: "Maintenance Services"
+            name: "maintenanceServices"
+            widget: "list"
+            fields:
+              - { label: "Service Icon", name: "serviceIcon", widget: "image" }
+              - { label: "Service Name", name: "serviceName", widget: "string" }
+              - {
+                  label: "Service Description",
+                  name: "serviceDescription",
+                  widget: "text",
+                }
+
+      - name: "design&installPage" # Used in routes, e.g., /admin/collections/blog
+        label: "Design&Install Page" # Used in the UI
+        file: "src/CMS/design&installPage.json"
+        fields: # The fields for each document, usually in front matter
+          - {
+              label: "Expertise text",
+              name: "expertiseText",
+              widget: "text",
+              optional: true,
+            }
+          - {
+              label: "Drawing service text",
+              name: "drawingServiceText",
+              widget: "text",
+              optional: true,
+            }
+          - {
+              label: "Garden design text",
+              name: "gardenDesignText",
+              widget: "text",
+              optional: true,
+            }
+          - {
+              label: "Design&Build service text",
+              name: "designAndBuildText",
+              widget: "text",
+              optional: true,
+            }
+
+      - name: "footerCompanyInfo" # Used in routes, e.g., /admin/collections/blog
+        label: "Footer Company Informations" # Used in the UI
+        file: "src/CMS/footerCompanyInfo.json"
+        fields:
+          - { label: "Phone Number", name: "phoneNumber", widget: "string" }
+          - { label: "Valid Email", name: "validEmail", widget: "string" }
+          - { label: "Real Location", name: "realLocation", widget: "string" }
+          - { label: "Work Program", name: "workProgram", widget: "string" }
+          - {
+              label: "Link for the Facebook profile",
+              name: "facebookProfile",
+              widget: "string",
+            }
+          - {
+              label: "Link for the LinkedIn profile",
+              name: "linkedInProfile",
+              widget: "string",
+            }

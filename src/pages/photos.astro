@@ -1,0 +1,20 @@
+---
+import Gallery from "@/components/Gallery.astro";
+import Layout from "../layouts/Layout.astro";
+import LongTitle from "@/components/LongTitle.astro";
+
+const images = await Astro.glob("../media/*");
+---
+
+<Layout title="McDermott Landscaping | Gallery">
+  <main
+    class="mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-20 overflow-x-hidden px-4 pt-[125px] lg:gap-36 lg:pt-[175px] 2xl:max-w-7xl"
+  >
+    <div
+      class="flex w-full flex-col items-center justify-center gap-6 lg:gap-8"
+    >
+      <LongTitle>Photo Gallery</LongTitle>
+      <Gallery allImgs={images} />
+    </div>
+  </main>
+</Layout>

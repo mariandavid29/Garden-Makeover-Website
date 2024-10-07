@@ -1,0 +1,101 @@
+---
+import "@fontsource-variable/montserrat";
+import "@fontsource/fira-sans/200.css";
+import "@fontsource/fira-sans/400.css";
+import "@fontsource/fira-sans/700.css";
+
+import "../styles/globals.css";
+
+import Header from "../components/Header.astro";
+import MobileHeader from "../components/MobileHeader";
+import Logo from "../components/Logo.astro";
+import Footer from "../components/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
+
+import { Image } from "astro:assets";
+import leafImg from "../assets/frunze.png";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("arata-te");
+      }
+    });
+  });
+
+  const hiddenElements = document.querySelectorAll(".ascuns");
+  hiddenElements.forEach((element) => {
+    observer.observe(element);
+  });
+</script>
+
+<style is:global>
+  .ascuns {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.33, 1, 0.68, 1) 0.3s;
+  }
+
+  .arata-te {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (min-width: 1024px) {
+    .staggur:nth-child(2) {
+      transition-delay: 0.5s;
+    }
+
+    .staggur:nth-child(3) {
+      transition-delay: 0.75s;
+    }
+
+    .staggur:nth-child(4) {
+      transition-delay: 1s;
+    }
+  }
+
+  @media prefers-reduced-motion {
+    .ascuns {
+      transition: none;
+    }
+  }
+</style>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="overflow-x-hidden font-montserrat">
+    <Image
+      src={leafImg}
+      class="pointer-events-none fixed -bottom-8 -left-8 z-[10] w-40 blur-[1.5px] min-[325px]:-bottom-6 min-[325px]:-left-6 sm:w-44 lg:w-52 lg:blur-[2px] 2xl:-bottom-4 2xl:-left-4 2xl:w-56"
+      alt="Leaf"
+    />
+    <slot />
+    <Header />
+    <MobileHeader client:load><Logo /></MobileHeader>
+    <Footer />
+  </body>
+</html>

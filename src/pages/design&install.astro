@@ -1,0 +1,127 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+// PHOTOS
+import construction2 from "../assets/construction2.jpg";
+import design1 from "../assets/design1.jpg";
+import orangeFlower from "../assets/orange-flower.png";
+
+import drawing from "../assets/sketch.png";
+import design from "../assets/technical-drawing.png";
+import garden from "../assets/gardening.png";
+
+import LongTitle from "../components/LongTitle.astro";
+import ShortTile from "../components/ShortTitle.astro";
+import Parag from "../components/Parag.astro";
+import NavigateButton from "../components/NavigateButton.astro";
+
+import jsonCMS from "../CMS/design&installPage.json";
+---
+
+<Layout title="McDermott Landscaping | Design&Install">
+  <main
+    class="relative mx-auto flex max-w-6xl flex-col justify-center overflow-x-hidden px-4 2xl:max-w-7xl"
+  >
+    <section
+      class="flex min-h-[calc(100vh_-_150px)] flex-col items-center gap-12 pt-44 lg:min-h-[calc(100vh_-_200px)] lg:flex-row lg:justify-center lg:gap-8 lg:pt-[125px]"
+    >
+      <h1
+        class="text-4xl font-bold text-orange-600 xs:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+      >
+        Design
+        <span class="text-2xl font-medium lg:text-5xl">and</span>
+        <br /> Installation
+      </h1>
+      <div class="relative flex items-center justify-center">
+        <Image
+          src={construction2}
+          alt="woman plating a tree"
+          loading="eager"
+          class="w-[80%] max-w-[400px] lg:max-w-sm xl:max-w-md 2xl:max-w-lg"
+        />
+        <Image
+          src={design1}
+          alt="sketch"
+          loading="eager"
+          class="absolute -bottom-[80%] right-[40%] -z-10 hidden max-w-xl xs:-bottom-[70%] lg:-bottom-[70%] lg:block xl:-bottom-[60%] 2xl:max-w-2xl"
+        />
+        <Image
+          src={orangeFlower}
+          alt="orange flower"
+          loading="eager"
+          class="absolute -top-[13%] right-0 w-[80px] -rotate-12 xs:w-[100px] lg:w-[120px] 2xl:-top-[15%]"
+        />
+      </div>
+    </section>
+    <section
+      class="ascuns my-[150px] flex flex-col items-center gap-16 md:justify-center lg:mb-[50px] lg:mt-[225px] lg:min-h-[80vh] xl:mt-[250px]"
+    >
+      <LongTitle>Why McDermott's design?</LongTitle>
+      <div class="flex flex-col items-center justify-center gap-5">
+        <ShortTile>Our Expertise</ShortTile>
+        <div
+          class="mx-auto grid w-full max-w-[375px] grid-cols-1 justify-items-center sm:max-w-[425px] md:max-w-[725px] md:grid-cols-2 md:items-center lg:max-w-[925px]"
+        >
+          <Parag>
+            {jsonCMS.expertiseText}
+          </Parag>
+        </div>
+      </div>
+    </section>
+    <section class="flex min-h-screen items-center justify-center">
+      <div
+        class="flex w-[90%] flex-col items-center gap-16 lg:gap-20 2xl:gap-28"
+      >
+        <LongTitle>What can we offer?</LongTitle>
+        <div class="ascuns flex w-full justify-start">
+          <div class="flex flex-col items-start gap-3">
+            <div class="flex items-center justify-center gap-4">
+              <Image src={drawing} alt="drawing icon" class="w-14 md:w-20" />
+              <h3 class="text-3xl font-medium md:text-4xl lg:text-5xl">
+                Drawings
+              </h3>
+            </div>
+            <p class="min-[325px]:text-lg lg:max-w-xl lg:text-xl 2xl:text-2xl">
+              {jsonCMS.drawingServiceText}
+            </p>
+          </div>
+        </div>
+
+        <div class="ascuns flex w-full justify-end">
+          <div class="flex flex-col items-start gap-3">
+            <div class="flex items-center justify-center gap-4">
+              <Image src={design} alt="design icon" class="w-14 md:w-[90px]" />
+              <h3 class="text-3xl font-medium md:text-4xl lg:text-5xl">
+                Garden Design
+              </h3>
+            </div>
+            <p class="min-[325px]:text-lg lg:max-w-xl lg:text-xl 2xl:text-2xl">
+              {jsonCMS.gardenDesignText}
+            </p>
+          </div>
+        </div>
+
+        <div class="ascuns flex w-full justify-start">
+          <div class="flex flex-col items-start gap-3">
+            <div class="flex items-center justify-center gap-4">
+              <Image src={garden} alt="orange flower" class="w-14 md:w-20" />
+              <h3 class="text-3xl font-medium md:text-4xl lg:text-5xl">
+                Design & Build Service
+              </h3>
+            </div>
+            <p class="min-[325px]:text-lg lg:max-w-xl lg:text-xl 2xl:text-2xl">
+              {jsonCMS.designAndBuildText}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="mt-24 flex flex-col items-center justify-center gap-5 xl:mt-32"
+    >
+      <LongTitle>Interested in working with us?</LongTitle>
+      <NavigateButton link="/contactform">Give us a message</NavigateButton>
+    </section>
+  </main>
+</Layout>
